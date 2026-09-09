@@ -1,5 +1,4 @@
 tarefas = []
-
 # código de criar tarefa
 def criar_tarefa():
     tarefa = {'id': int(input('ID: ')),
@@ -34,6 +33,18 @@ def atualizar_tarefas():
                 print('Opção Inválida')
     if encontrar == False:
         print("Tarefa não pode ser atualizada")
+def excluir_elemento():
+    excluir = int(input('Digite o ID da tarefa que quer excluir: '))
+    encontrou = False
+    for tarefa in tarefas:
+        if excluir == tarefa['id']:
+            encontrou = True
+            ctz = str(input('Você deseja excluir [S/N]')).upper()
+            if ctz == "S":
+                tarefas.remove(tarefa)
+                print("Tarefa Removida")
+    if encontrou == False:
+        print('Tarefa não encontrada')
 while True:
     print('=-' * 20)
     print("Meu Trelo".center(40))
@@ -44,28 +55,17 @@ while True:
     print('4 - Excluir Tarefa')
     print('0 - Sair')
     escolha = int(input('Escolha uma opção: '))
-    # código de criar tarefa
+    # função de criar tarefa
     if escolha == 1:
         criar_tarefa()
-
+    # função de  listar tarefas
     elif escolha == 2:
         listar_tarefas()
-
+    # função de atualizar tarefas
     elif escolha == 3:
         atualizar_tarefas()
+    # função de exluir tarefas
     elif escolha == 4:
-        excluir = int(input('Digite o ID da tarefa que quer excluir: '))
-        encontrou = False
-        for tarefa in tarefas:
-            if excluir == tarefa['id']:
-                encontrou = True
-                ctz = str(input('Você deseja excluir [S/N]')).upper()
-                if ctz == "S":
-                    tarefas.remove(tarefa)
-                    print("Tarefa Removida")
-        if encontrou == False:
-            print('Tarefa não encontrada')
-
+        excluir_elemento()        
     elif escolha == 0:
         break
-
